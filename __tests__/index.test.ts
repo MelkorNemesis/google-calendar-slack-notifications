@@ -25,7 +25,9 @@ describe("Calendar", () => {
       ok: true,
     });
 
-    mockedCalendarClient.events.list.mockResolvedValue();
+    // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+    // @ts-ignore
+    mockedCalendarClient.events.list.mockResolvedValue({ data: { items: [] } });
 
     await run();
 
@@ -47,6 +49,10 @@ describe("Calendar", () => {
       ],
       ok: true,
     });
+
+    // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+    // @ts-ignore
+    mockedCalendarClient.events.list.mockResolvedValue({ data: { items: [] } });
 
     await run();
 
