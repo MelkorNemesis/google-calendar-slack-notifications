@@ -4,6 +4,7 @@ import { client } from "../src/slack/client";
 import { calendar } from "../src/google/client";
 
 import communityEventStub from "./stubs/community-event.json";
+import nonCommunityEventStub from "./stubs/non-community-event.json";
 
 jest.mock("../src/slack/client");
 jest.mock("../src/google/client");
@@ -66,6 +67,24 @@ describe("Calendar", () => {
     expect(mockedSlackClient.chat.deleteScheduledMessage).toHaveBeenCalledTimes(
       1
     );
+  });
+
+  test("does not schedule a slack message if the event is not a community event", async () => {
+    mockedSlackClient.chat.scheduledMessages.list.mockResolvedValue({
+      scheduled_messages: [],
+      ok: true,
+    });
+
+    // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+    // @ts-ignore
+    mockedCalendarClient.events.list.mockResolvedValue({
+      data: { items: [nonCommunityEventStub] },
+    });
+
+    await run();
+
+    expect(mockedSlackClient.chat.scheduleMessage).not.toHaveBeenCalled();
+    expect(mockedSlackClient.chat.postMessage).not.toHaveBeenCalled();
   });
 
   test("schedules a slack message", async () => {

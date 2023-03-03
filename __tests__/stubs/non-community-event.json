@@ -16,11 +16,11 @@
     "self": true
   },
   "start": {
-    "dateTime": "2023-03-03T07:30:00+01:00",
+    "dateTime": "2023-03-03T06:45:00+01:00",
     "timeZone": "Europe/Prague"
   },
   "end": {
-    "dateTime": "2023-03-03T16:30:00+01:00",
+    "dateTime": "2023-03-03T07:15:00+01:00",
     "timeZone": "Europe/Prague"
   },
   "recurringEventId": "ldga7ooba789pq1cqekj95evqj",
