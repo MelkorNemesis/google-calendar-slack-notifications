@@ -13,11 +13,6 @@ const mockedSlackClient = jest.mocked(client);
 const mockedCalendarClient = jest.mocked(calendar);
 
 describe("Calendar", () => {
-  beforeEach(() => {
-    process.env.SLACK_TOKEN = "token";
-    process.env.CALENDAR_ID = "calendar_id";
-  });
-
   afterEach(() => {
     jest.resetAllMocks();
   });
