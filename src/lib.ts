@@ -45,8 +45,6 @@ function formatSlackBlocks({
   ];
 }
 
-const MINUTES_BEFORE_EVENT_TO_ALERT = 15;
-
 function getEventStartDate(event: calendar_v3.Schema$Event) {
   return moment(google.getEventStartDate(event));
 }
@@ -54,7 +52,7 @@ function getEventStartDate(event: calendar_v3.Schema$Event) {
 function getAlertAt(eventStartDate: moment.Moment) {
   return eventStartDate
     .clone()
-    .subtract(MINUTES_BEFORE_EVENT_TO_ALERT, "minutes");
+    .subtract(process.env.ALERT_BEFORE_IN_MINS, "minutes");
 }
 
 function getStartInMinutes(
