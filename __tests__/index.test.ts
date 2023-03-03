@@ -34,12 +34,19 @@ describe("Calendar", () => {
     ).not.toHaveBeenCalled();
   });
 
-  test("deletes scheduled messages", async () => {
+  test("deletes scheduled messages if there are any", async () => {
     mockedSlackClient.chat.scheduledMessages.list.mockResolvedValue({
       scheduled_messages: [
         {
           id: "123",
           channel_id: "C123",
+          text: "Scheduled message",
+          post_at: 1234567890,
+          date_created: 1234567890,
+        },
+        {
+          id: "456",
+          channel_id: "C456",
           text: "Scheduled message",
           post_at: 1234567890,
           date_created: 1234567890,
@@ -54,13 +61,22 @@ describe("Calendar", () => {
 
     await run();
 
-    expect(mockedSlackClient.chat.deleteScheduledMessage).toHaveBeenCalledWith({
+    expect(
+      mockedSlackClient.chat.deleteScheduledMessage
+    ).toHaveBeenNthCalledWith(1, {
       channel: "C123",
       scheduled_message_id: "123",
     });
 
+    expect(
+      mockedSlackClient.chat.deleteScheduledMessage
+    ).toHaveBeenNthCalledWith(2, {
+      channel: "C456",
+      scheduled_message_id: "456",
+    });
+
     expect(mockedSlackClient.chat.deleteScheduledMessage).toHaveBeenCalledTimes(
-      1
+      2
     );
   });
 
@@ -83,7 +99,7 @@ describe("Calendar", () => {
   });
 
   test("schedules a slack message", async () => {
-    const thirtyMinutesBeforeEventStart = new Date('2023-03-03T05:15:00Z');
+    const thirtyMinutesBeforeEventStart = new Date("2023-03-03T05:15:00Z");
     jest.useFakeTimers();
     jest.setSystemTime(thirtyMinutesBeforeEventStart);
 
@@ -142,13 +158,13 @@ describe("Calendar", () => {
       channel: "#community-test",
       post_at: 1677821400,
       text: "Upcoming event: Community Event in 15 minutes",
-    })
+    });
 
     jest.useRealTimers();
   });
 
   test("posts a slack message immediately", async () => {
-    const fiveMinutesBeforeEventStart = new Date('2023-03-03T05:40:00Z');
+    const fiveMinutesBeforeEventStart = new Date("2023-03-03T05:40:00Z");
     jest.useFakeTimers();
     jest.setSystemTime(fiveMinutesBeforeEventStart);
 
@@ -205,8 +221,8 @@ describe("Calendar", () => {
       ],
       channel: "#community-test",
       text: "Upcoming event: Community Event in 5 minutes",
-    })
+    });
 
     jest.useRealTimers();
-  })
+  });
 });
