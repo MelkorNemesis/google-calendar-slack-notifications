@@ -39,17 +39,17 @@ export function sendMessage({
   channels,
   text,
   blocks,
-  postAt,
+  scheduledAt,
 }: {
   channels: string[];
   text: string;
   blocks: KnownBlock[];
-  postAt: moment.Moment | null;
+  scheduledAt: moment.Moment | null;
 }) {
   return Promise.all(
     channels.map((channel) => {
-      return postAt
-        ? schedule({ channel, blocks, text, postAt })
+      return scheduledAt
+        ? schedule({ channel, blocks, text, postAt: scheduledAt })
         : post({ channel, blocks, text });
     })
   );

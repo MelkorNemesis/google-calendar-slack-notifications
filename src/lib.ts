@@ -47,21 +47,43 @@ function formatSlackBlocks({
 
 const MINUTES_BEFORE_EVENT_TO_ALERT = 15;
 
-export async function handleEvent(event: calendar_v3.Schema$Event) {
-  const now = moment();
-  const eventStartDate = moment(google.getEventStartDate(event));
-  const alertAt = eventStartDate
+function getEventStartDate(event: calendar_v3.Schema$Event) {
+  return moment(google.getEventStartDate(event));
+}
+
+function getAlertAt(eventStartDate: moment.Moment) {
+  return eventStartDate
     .clone()
     .subtract(MINUTES_BEFORE_EVENT_TO_ALERT, "minutes");
-  const postAt = now.isAfter(alertAt) ? null : alertAt;
+}
 
-  const startInMinutes = postAt
+function getStartInMinutes(
+  postAt: moment.Moment,
+  eventStartDate: moment.Moment,
+  now: moment.Moment
+) {
+  return postAt
     ? eventStartDate.diff(postAt, "minutes")
     : eventStartDate.diff(now, "minutes");
+}
+
+function getMessageScheduledTime(
+  eventStartDate: moment.Moment,
+  now: moment.Moment
+) {
+  const alertAt = getAlertAt(eventStartDate);
+  return now.isAfter(alertAt) ? null : alertAt;
+}
+
+export async function handleEvent(event: calendar_v3.Schema$Event) {
+  const now = moment();
+  const eventStartDate = getEventStartDate(event);
+  const scheduledAt = getMessageScheduledTime(eventStartDate, now);
+  const startInMinutes = getStartInMinutes(scheduledAt, eventStartDate, now);
 
   const channels = getEventCommunityChannels(event);
   const blocks = formatSlackBlocks({ event, startInMinutes });
   const text = `Upcoming event: ${event.summary} in ${startInMinutes} minutes`;
 
-  await slack.sendMessage({ channels, blocks, text, postAt });
+  await slack.sendMessage({ channels, blocks, text, scheduledAt });
 }
