@@ -42,7 +42,8 @@
     "prepare": "cp -n .env.sample .env || true && husky install",
     "test": "jest",
     "build": "webpack --config webpack.config.ts",
-    "start": "ts-node src/index.ts",
+    "start": "node dist/index.js",
+    "dev": "ts-node src/index.ts",
     "scheduled": "ts-node bin/scheduled-messages.ts",
     "future": "ts-node bin/future-events.ts"
   },

@@ -1,13 +1,12 @@
 import path from "path";
 import nodeExternals from "webpack-node-externals";
-import slsw from "serverless-webpack";
 import ForkTsCheckerWebpackPlugin from "fork-ts-checker-webpack-plugin";
 
-const isLocal = slsw.lib.webpack.isLocal;
+const isDevelopment = process.env.NODE_ENV === "development";
 
 module.exports = {
-  mode: isLocal ? "development" : "production",
-  entry: slsw.lib.entries,
+  mode: isDevelopment ? "development" : "production",
+  entry: './src/index.ts',
   externals: [nodeExternals()],
   devtool: "source-map",
   resolve: {
@@ -15,8 +14,8 @@ module.exports = {
   },
   output: {
     libraryTarget: "commonjs2",
-    path: path.join(__dirname, ".webpack"),
-    filename: "[name].js",
+    path: path.join(__dirname, "dist"),
+    filename: "index.js",
   },
   target: "node",
   cache: {
