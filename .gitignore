@@ -1,0 +1,7 @@
+.env
+.eslintcache
+.serverless
+.webpack
+.webpackCache
+node_modules
+.idea
