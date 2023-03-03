@@ -33,6 +33,7 @@
     "ts-node": "^10.9.1",
     "typescript": "^4.9.5",
     "webpack": "^5.75.0",
+    "webpack-cli": "^5.0.1",
     "webpack-node-externals": "^3.0.0"
   },
   "scripts": {
@@ -40,6 +41,7 @@
     "lint": "eslint --ext .ts .",
     "prepare": "cp -n .env.sample .env || true && husky install",
     "test": "jest",
+    "build": "webpack --config webpack.config.ts",
     "start": "ts-node src/index.ts",
     "scheduled": "ts-node bin/scheduled-messages.ts",
     "future": "ts-node bin/future-events.ts"
