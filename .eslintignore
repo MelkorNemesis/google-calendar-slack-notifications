@@ -1,5 +1,4 @@
 .build
 .env
-.serverless
 credentials.json
 node_modules
