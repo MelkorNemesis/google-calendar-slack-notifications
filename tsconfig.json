@@ -7,9 +7,6 @@
     "noUnusedLocals": true,
     "noUnusedParameters": true,
     "outDir": "lib",
-    "paths": {
-      "@src/*": ["src/*"]
-    },
     "removeComments": true,
     "resolveJsonModule": true,
     "sourceMap": true,
