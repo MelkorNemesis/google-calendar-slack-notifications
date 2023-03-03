@@ -1,0 +1,90 @@
+{
+  "kind": "calendar#event",
+  "etag": "\"3355636177480000\"",
+  "id": "75ot0poi3253166urso91l0sug",
+  "status": "confirmed",
+  "htmlLink": "https://www.google.com/calendar/event?eid=NzVvdDBwb2kzMjUzMTY2dXJzbzkxbDBzdWcgcXV1Y3I3amtqbWdxZjVpcDhibHU4YWM2YmtAZw",
+  "created": "2023-03-02T12:48:09.000Z",
+  "updated": "2023-03-03T04:34:48.740Z",
+  "summary": "Community Event",
+  "description": "Lorem ipsum\n\n#community-dev\n#community-test",
+  "creator": {
+    "email": "sevcik.mi@gmail.com"
+  },
+  "organizer": {
+    "email": "quucr7jkjmgqf5ip8blu8ac6bk@group.calendar.google.com",
+    "displayName": "Business",
+    "self": true
+  },
+  "start": {
+    "dateTime": "2023-03-03T06:45:00+01:00",
+    "timeZone": "Europe/Prague"
+  },
+  "end": {
+    "dateTime": "2023-03-03T07:15:00+01:00",
+    "timeZone": "Europe/Prague"
+  },
+  "iCalUID": "75ot0poi3253166urso91l0sug@google.com",
+  "sequence": 10,
+  "extendedProperties": {
+    "private": {
+      "meetingId": "86409061489",
+      "zmMeetingNum": "86409061489",
+      "meetingParams": "{\"topic\":\"Foo bar baz\",\"type\":2,\"start_time\":\"2023-03-02T16:19:00+01:00\",\"duration\":30,\"timezone\":\"Europe/Prague\",\"invitees_hash\":\"1B2M2Y8AsgTpgAmY7PhCfg==\"}"
+    }
+  },
+  "conferenceData": {
+    "entryPoints": [
+      {
+        "entryPointType": "video",
+        "uri": "https://nearform.zoom.us/j/86409061489?pwd=Q2VycTJ3ZjRidlFsd2d6QkxpeXFNQT09",
+        "label": "nearform.zoom.us/j/86409061489?pwd=Q2VycTJ3ZjRidlFsd2d6QkxpeXFNQT09",
+        "meetingCode": "86409061489",
+        "passcode": "783785"
+      },
+      {
+        "regionCode": "US",
+        "entryPointType": "phone",
+        "uri": "tel:+12532158782,,86409061489#",
+        "label": "+1 253-215-8782",
+        "passcode": "783785"
+      },
+      {
+        "regionCode": "IE",
+        "entryPointType": "phone",
+        "uri": "tel:+35361639031,,86409061489#",
+        "label": "+353 61 639 031",
+        "passcode": "783785"
+      },
+      {
+        "entryPointType": "more",
+        "uri": "https://www.google.com/url?q=https://applications.zoom.us/addon/invitation/detail?meetingUuid%3DDONmJBfCQZ23BnAWtFm%252B8Q%253D%253D%26signature%3D1b805f3687e8db3ff787179237a00189381d7b3ef144b8b85519e4847a0b03ac%26v%3D1&sa=D&source=calendar&usg=AOvVaw2v7-SZPe7YG6ndqlMLaCRu"
+      }
+    ],
+    "conferenceSolution": {
+      "key": {
+        "type": "addOn"
+      },
+      "name": "Zoom Meeting",
+      "iconUri": "https://lh3.googleusercontent.com/pw/AM-JKLUkiyTEgH-6DiQP85RGtd_BORvAuFnS9katNMgwYQBJUTiDh12qtQxMJFWYH2Dj30hNsNUrr-kzKMl7jX-Qd0FR7JmVSx-Fhruf8xTPPI-wdsMYez6WJE7tz7KmqsORKBEnBTiILtMJXuMvphqKdB9X=s128-no"
+    },
+    "conferenceId": "86409061489",
+    "notes": "Meeting host: <a href=\"mailto:michal.sevcik@nearform.com\" target=\"_blank\">michal.sevcik@nearform.com</a><br /><br />Join Zoom Meeting: <br /><a href=\"https://www.google.com/url?q=https://nearform.zoom.us/j/86409061489?pwd%3DQ2VycTJ3ZjRidlFsd2d6QkxpeXFNQT09&amp;sa=D&amp;source=calendar&amp;usg=AOvVaw3rn-MtAuINe7OGg-gDaLOM\" target=\"_blank\">https://nearform.zoom.us/j/86409061489?pwd=Q2VycTJ3ZjRidlFsd2d6QkxpeXFNQT09</a>",
+    "parameters": {
+      "addOnParameters": {
+        "parameters": {
+          "scriptId": "1O_9DeEljSH2vrECr8XeFYYRxFFiowFKOivqSDz316BlBcDXrF00BXrkO",
+          "realMeetingId": "86409061489",
+          "creatorUserId": "QXeE_FmJSlyWvzJp6F92ig",
+          "meetingUuid": "DONmJBfCQZ23BnAWtFm+8Q==",
+          "meetingType": "2",
+          "originalEventId": "75ot0poi3253166urso91l0sug"
+        }
+      }
+    }
+  },
+  "reminders": {
+    "useDefault": true
+  },
+  "eventType": "default"
+}

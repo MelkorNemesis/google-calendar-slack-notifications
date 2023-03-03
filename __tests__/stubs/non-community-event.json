@@ -1,0 +1,37 @@
+{
+  "kind": "calendar#event",
+  "etag": "\"3261048569574000\"",
+  "id": "ldga7ooba789pq1cqekj95evqj_20230303T063000Z",
+  "status": "confirmed",
+  "htmlLink": "https://www.google.com/calendar/event?eid=bGRnYTdvb2JhNzg5cHExY3Fla2o5NWV2cWpfMjAyMzAzMDNUMDYzMDAwWiBxdXVjcjdqa2ptZ3FmNWlwOGJsdThhYzZia0Bn",
+  "created": "2019-08-17T09:19:12.000Z",
+  "updated": "2021-09-01T19:24:44.787Z",
+  "summary": "Non Community Event",
+  "creator": {
+    "email": "sevcik.mi@gmail.com"
+  },
+  "organizer": {
+    "email": "quucr7jkjmgqf5ip8blu8ac6bk@group.calendar.google.com",
+    "displayName": "Business",
+    "self": true
+  },
+  "start": {
+    "dateTime": "2023-03-03T07:30:00+01:00",
+    "timeZone": "Europe/Prague"
+  },
+  "end": {
+    "dateTime": "2023-03-03T16:30:00+01:00",
+    "timeZone": "Europe/Prague"
+  },
+  "recurringEventId": "ldga7ooba789pq1cqekj95evqj",
+  "originalStartTime": {
+    "dateTime": "2023-03-03T07:30:00+01:00",
+    "timeZone": "Europe/Prague"
+  },
+  "iCalUID": "ldga7ooba789pq1cqekj95evqj@google.com",
+  "sequence": 1,
+  "reminders": {
+    "useDefault": true
+  },
+  "eventType": "default"
+}

@@ -3,6 +3,8 @@ import { run } from "../src/index";
 import { client } from "../src/slack/client";
 import { calendar } from "../src/google/client";
 
+import communityEventStub from "./stubs/community-event.json";
+
 jest.mock("../src/slack/client");
 jest.mock("../src/google/client");
 
@@ -65,4 +67,132 @@ describe("Calendar", () => {
       1
     );
   });
+
+  test("schedules a slack message", async () => {
+    const thirtyMinutesBeforeEventStart = new Date('2023-03-03T05:15:00Z');
+    jest.useFakeTimers();
+    jest.setSystemTime(thirtyMinutesBeforeEventStart);
+
+    mockedSlackClient.chat.scheduledMessages.list.mockResolvedValue({
+      scheduled_messages: [],
+      ok: true,
+    });
+
+    // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+    // @ts-ignore
+    mockedCalendarClient.events.list.mockResolvedValue({
+      data: { items: [communityEventStub] },
+    });
+
+    await run();
+
+    expect(mockedSlackClient.chat.scheduleMessage).toHaveBeenNthCalledWith(1, {
+      blocks: [
+        {
+          text: {
+            text: "Hey @channel! A *Community Event* meeting is starting in 15 minutes.",
+            type: "mrkdwn",
+          },
+          type: "section",
+        },
+        {
+          text: {
+            text: "💻 Join the meeting: https://nearform.zoom.us/j/86409061489?pwd=Q2VycTJ3ZjRidlFsd2d6QkxpeXFNQT09",
+            type: "mrkdwn",
+          },
+          type: "section",
+        },
+      ],
+      channel: "#community-dev",
+      post_at: 1677821400,
+      text: "Upcoming event: Community Event in 15 minutes",
+    });
+
+    expect(mockedSlackClient.chat.scheduleMessage).toHaveBeenNthCalledWith(2, {
+      blocks: [
+        {
+          text: {
+            text: "Hey @channel! A *Community Event* meeting is starting in 15 minutes.",
+            type: "mrkdwn",
+          },
+          type: "section",
+        },
+        {
+          text: {
+            text: "💻 Join the meeting: https://nearform.zoom.us/j/86409061489?pwd=Q2VycTJ3ZjRidlFsd2d6QkxpeXFNQT09",
+            type: "mrkdwn",
+          },
+          type: "section",
+        },
+      ],
+      channel: "#community-test",
+      post_at: 1677821400,
+      text: "Upcoming event: Community Event in 15 minutes",
+    })
+
+    jest.useRealTimers();
+  });
+
+  test("posts a slack message immediately", async () => {
+    const fiveMinutesBeforeEventStart = new Date('2023-03-03T05:40:00Z');
+    jest.useFakeTimers();
+    jest.setSystemTime(fiveMinutesBeforeEventStart);
+
+    mockedSlackClient.chat.scheduledMessages.list.mockResolvedValue({
+      scheduled_messages: [],
+      ok: true,
+    });
+
+    // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+    // @ts-ignore
+    mockedCalendarClient.events.list.mockResolvedValue({
+      data: { items: [communityEventStub] },
+    });
+
+    await run();
+
+    expect(mockedSlackClient.chat.postMessage).toHaveBeenNthCalledWith(1, {
+      blocks: [
+        {
+          text: {
+            text: "Hey @channel! A *Community Event* meeting is starting in 5 minutes.",
+            type: "mrkdwn",
+          },
+          type: "section",
+        },
+        {
+          text: {
+            text: "💻 Join the meeting: https://nearform.zoom.us/j/86409061489?pwd=Q2VycTJ3ZjRidlFsd2d6QkxpeXFNQT09",
+            type: "mrkdwn",
+          },
+          type: "section",
+        },
+      ],
+      channel: "#community-dev",
+      text: "Upcoming event: Community Event in 5 minutes",
+    });
+
+    expect(mockedSlackClient.chat.postMessage).toHaveBeenNthCalledWith(2, {
+      blocks: [
+        {
+          text: {
+            text: "Hey @channel! A *Community Event* meeting is starting in 5 minutes.",
+            type: "mrkdwn",
+          },
+          type: "section",
+        },
+        {
+          text: {
+            text: "💻 Join the meeting: https://nearform.zoom.us/j/86409061489?pwd=Q2VycTJ3ZjRidlFsd2d6QkxpeXFNQT09",
+            type: "mrkdwn",
+          },
+          type: "section",
+        },
+      ],
+      channel: "#community-test",
+      text: "Upcoming event: Community Event in 5 minutes",
+    })
+
+    jest.useRealTimers();
+  })
 });
