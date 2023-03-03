@@ -6,6 +6,7 @@ A lambda created to run every hour, to notify the correct community channel base
 
 ## Background Setup
 
+- Ensure you have Google Calendar API enabled in the Google Developer Console.
 - Ensure that you have setup a `service_account` in the Google Developer Console that has the ability to view the CalendarAPI.
   - Make sure you have copied the `JSON` for the account details into `credentials.json` file in the root of this project.
 - Ensure that you have setup a `Google Calendar` that has the correct events.
