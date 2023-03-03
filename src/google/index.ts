@@ -14,7 +14,6 @@ export const getFutureEvents = async () => {
     calendarId,
     timeMin,
     timeMax,
-    maxResults: 100,
     singleEvents: true,
     orderBy: "startTime",
   });
